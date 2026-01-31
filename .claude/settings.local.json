@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(uv run python:*)",
+      "Bash(where:*)",
+      "Bash(ffmpeg:*)",
+      "Bash(findstr:*)",
+      "Bash(ffprobe:*)",
+      "Bash(dir \"C:\\\\Users\\\\tim\\\\AppData\\\\Local\\\\Temp\\\\test_track1.wav\")",
+      "Bash(python -m py_compile:*)"
+    ]
+  }
+}
