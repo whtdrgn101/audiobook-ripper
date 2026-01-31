@@ -12,6 +12,7 @@ from mutagen.id3 import (
     TIT2,
     TPE1,
     TPE2,
+    TPOS,
     TRCK,
 )
 from mutagen.mp3 import MP3
@@ -160,6 +161,14 @@ class MetadataService:
             if metadata.series_number:
                 series_info += f" #{metadata.series_number}"
             tags.add(TIT1(encoding=3, text=series_info))
+
+        # Disc number
+        if metadata.disc_number:
+            if metadata.total_discs:
+                disc_str = f"{metadata.disc_number}/{metadata.total_discs}"
+            else:
+                disc_str = str(metadata.disc_number)
+            tags.add(TPOS(encoding=3, text=disc_str))
 
         # Cover art
         if metadata.cover_art:

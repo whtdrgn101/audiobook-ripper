@@ -297,8 +297,9 @@ class RipWorker(QThread):
 
         try:
             first_meta = self._metadata.get(self._tracks[0], AudiobookMetadata())
-            first_meta.track_number = 1
-            first_meta.total_tracks = 1
+            # Use disc number as track number for combined files
+            first_meta.track_number = first_meta.disc_number or 1
+            first_meta.total_tracks = first_meta.total_discs or 1
             self._metadata_service.write_metadata(combined_path, first_meta)
         except Exception as e:
             self.progress.emit(RipProgress(
