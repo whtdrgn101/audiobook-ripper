@@ -1,0 +1,38 @@
+[project]
+name = "audiobook-ripper"
+version = "0.1.0"
+description = "Rip audio CDs to MP3 with audiobook metadata support"
+requires-python = ">=3.11"
+dependencies = [
+    "PySide6>=6.6.0",
+    "mutagen>=1.47.0",
+    "musicbrainzngs>=0.7.1",
+    "discid>=1.2.0",
+]
+
+[project.scripts]
+audiobook-ripper = "audiobook_ripper.__main__:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/audiobook_ripper"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=4.1.0",
+    "pytest-qt>=4.4.0",
+    "pytest-mock>=3.12.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--cov=audiobook_ripper --cov-report=term-missing --cov-fail-under=70"
+qt_api = "pyside6"
+
+[tool.coverage.run]
+source = ["src/audiobook_ripper"]
+omit = ["*/__main__.py"]
